@@ -22,6 +22,11 @@ requirements:
     - ${{ stdlib('c') }}
     - make
     - pkg-config
+    - if: target_platform == "osx-arm64"
+      then:
+        - autoconf
+        - automake
+        - libtool
   run_exports:
     - ${{ pin_subpackage('editline', upper_bound='x') }}
 
