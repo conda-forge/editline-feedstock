@@ -2,7 +2,7 @@
 set -ex
 
 if [[ "$target_platform" == "osx-arm64" ]]; then
-  autoreconf -fi
+  autoreconf -vfi
 fi
 ./configure --prefix="${PREFIX}"
 make all -j ${CPU_COUNT}
