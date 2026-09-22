@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -ex
 
-if [[ "$target_platform" == "osx-arm64" ]]; then
-  autoreconf -vfi
-fi
 ./configure --prefix="${PREFIX}"
 make all -j ${CPU_COUNT}
-make check
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR:-}" != "" ]]; then
+  make check
+fi
 make install
