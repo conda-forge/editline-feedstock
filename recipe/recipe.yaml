@@ -11,10 +11,6 @@ package:
 source:
   url: https://github.com/troglobit/${{ name }}/releases/download/${{ version }}/${{ name }}-${{ version }}.tar.gz
   sha256: 189e179253c0932d15ce94f53e8cde7a0c38383f39f11f3b92d40cd18839678f
-  patches:
-    - if: target_platform == "osx-arm64"
-      then:
-        - configure-ac.patch
 
 build:
   number: 0
@@ -26,11 +22,6 @@ requirements:
     - ${{ stdlib('c') }}
     - make
     - pkg-config
-    - if: target_platform == "osx-arm64"
-      then:
-        - autoconf
-        - automake
-        - libtool
   run_exports:
     - ${{ pin_subpackage('editline', upper_bound='x') }}
 
